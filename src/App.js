@@ -1,5 +1,6 @@
 import {Component} from 'react'
 
+import LanguageContext from './context/LanguageContext'
 import Header from './components/Header'
 import LandingSection from './components/LandingSection'
 import FeaturesSection from './components/FeaturesSection'
@@ -12,11 +13,19 @@ class App extends Component {
   }
 
   render() {
+    const {activeLanguage} = this.state
     return (
       <>
-        <Header />
-        <LandingSection />
-        <FeaturesSection />
+        <LanguageContext.Provider
+          value={{
+            activeLanguage,
+            changeLanguage: this.changeLanguage,
+          }}
+        >
+          <Header />
+          <LandingSection />
+          <FeaturesSection />
+        </LanguageContext.Provider>
       </>
     )
   }
